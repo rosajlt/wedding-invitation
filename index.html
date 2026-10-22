@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Raden & Arum | Undangan Pernikahan</title>
+    
+    <!-- Meta tags for SEO & Social Sharing -->
+    <meta name="description" content="Undangan Pernikahan Mewah Raden Aditya & Arum Clarissa. Kami mengundang Anda untuk merayakan momen bahagia kami.">
+    <meta property="og:title" content="The Wedding of Raden & Arum">
+    <meta property="og:description" content="Minggu, 12 Desember 2026 - Klik untuk membuka undangan.">
+    <meta property="og:image" content="assets/images/cover.jpg">
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="lock-scroll">
+
+    <!-- =======================================================
+         BACKGROUND AUDIO ELEMENT
+         Nadhif Basalamah - Kota Ini Tak Sama Tanpamu
+         ======================================================= -->
+    <audio id="weddingAudio" loop preload="auto">
+        <source src="assets/audio/kota-ini-tak-sama-tanpamu.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- =======================================================
+         FLOATING AUDIO CONTROL (VINYL / PIRINGAN HITAM)
+         Tombol melayang berbentuk piringan vinyl dengan animasi putar
+         ======================================================= -->
+    <div id="audio-control-container" class="hidden">
+        <div id="vinylButton" class="vinyl-disc paused" role="button" aria-label="Toggle Pemutar Musik" title="Nadhif Basalamah - Kota Ini Tak Sama Tanpamu (Putar / Jeda)">
+            <div class="audio-waves"></div>
+            <div class="vinyl-center">
+                <i id="audioIcon" class="bi bi-disc-fill"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         HERO COVER / FULLSCREEN OVERLAY (HALAMAN PERTAMA)
+         Foto background dengan opacity rendah, teks kontras tinggi,
+         dan mekanisme autoplay bypass saat klik tombol buka.
+         ======================================================= -->
+    <section id="hero-cover">
+        <div class="cover-container">
+            <p class="cover-tagline">The Royal Wedding of</p>
+            <h1 class="cover-couple-names">Raden &amp; Arum</h1>
+            
+            <div class="ornament-divider">
+                <span></span>
+                <i class="bi bi-gem"></i>
+                <span></span>
+            </div>
+
+            <div class="cover-guest-box">
+                <div class="cover-guest-title">Kepada Yth. Bapak/Ibu/Saudara/i:</div>
+                <div id="guest-name" class="cover-guest-name">Tamu Undangan</div>
+            </div>
+
+            <p class="cover-note mt-2 mb-4">
+                Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam hari istimewa kami.
+            </p>
+
+            <div>
+                <button id="btnOpenInvitation" class="btn btn-gold pulse-animation" type="button">
+                    <i class="bi bi-envelope-open-fill"></i>
+                    Buka Undangan
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- =======================================================
+         MAIN INVITATION CONTENT
+         ======================================================= -->
+    <main id="main-content">
+
+        <!-- HERO SECTION INSIDE -->
+        <section class="hero-section text-center">
+            <div class="container">
+                <p class="text-gold letter-spacing text-uppercase small mb-2 font-heading fw-bold">Walimatul 'Ursy</p>
+                <h2 class="hero-names text-gold-gradient">Raden <span class="hero-ampersand">&amp;</span> Arum</h2>
+                <p class="hero-date">Minggu, 12 Desember 2026</p>
+
+                <div class="ornament-divider">
+                    <span></span>
+                    <i class="bi bi-heart-fill"></i>
+                    <span></span>
+                </div>
+
+                <!-- COUNTDOWN TIMER -->
+                <div class="row justify-content-center g-2 g-md-3 mt-4" id="countdown-wrapper">
+                    <div class="col-auto">
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="days">00</span>
+                            <span class="countdown-label">Hari</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="hours">00</span>
+                            <span class="countdown-label">Jam</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="minutes">00</span>
+                            <span class="countdown-label">Menit</span>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="countdown-box">
+                            <span class="countdown-num" id="seconds">00</span>
+                            <span class="countdown-label">Detik</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="#event-details" class="btn btn-gold btn-sm">
+                        <i class="bi bi-calendar-event me-1"></i> Simpan Tanggal
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOLY QUOTE / AYAT SUCI -->
+        <section class="py-5 text-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="quote-card">
+                            <i class="bi bi-quote text-gold fs-1 d-block mb-2"></i>
+                            <p class="quote-text fst-italic mb-3">
+                                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                            </p>
+                            <span class="text-gold-light font-heading fw-bold fs-6">— QS. Ar-Rum: 21 —</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COUPLE PROFILES SECTION -->
+        <section class="py-5" id="couple-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-subtitle">Pasangan Mempelai</p>
+                    <h2 class="section-title text-gold-gradient">Groom &amp; Bride</h2>
+                    <p class="section-lead-text">
+                        Maha Suci Allah yang telah mempertemukan kami dalam ikatan suci pernikahan. Mohon doa restu untuk perjalanan hidup baru kami.
+                    </p>
+                </div>
+
+                <div class="row align-items-center g-4 justify-content-center">
+                    <!-- MEMPELAI PRIA -->
+                    <div class="col-lg-5 col-md-6 text-center">
+                        <div class="luxury-card h-100">
+                            <div class="couple-avatar-wrap">
+                                <img src="assets/images/groom.jpg" alt="Raden Aditya Pratama" class="couple-avatar">
+                            </div>
+                            <h3 class="couple-name">Raden Aditya Pratama, S.Kom</h3>
+                            <p class="couple-bio">
+                                Putra pertama dari:<br>
+                                <strong>Bpk. H. Bambang Sudirman</strong> &amp; <br>
+                                <strong>Ibu Hj. Siti Nurhaliza</strong>
+                            </p>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="couple-instagram">
+                                <i class="bi bi-instagram"></i> @raden.aditya
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CONNECTOR -->
+                    <div class="col-lg-2 col-12 text-center d-flex justify-content-center my-3 my-lg-0">
+                        <div class="heart-circle">
+                            <i class="bi bi-heart-fill"></i>
+                        </div>
+                    </div>
+
+                    <!-- MEMPELAI WANITA -->
+                    <div class="col-lg-5 col-md-6 text-center">
+                        <div class="luxury-card h-100">
+                            <div class="couple-avatar-wrap">
+                                <img src="assets/images/bride.jpg" alt="Arum Clarissa Dewi" class="couple-avatar">
+                            </div>
+                            <h3 class="couple-name">Arum Clarissa Dewi, M.M</h3>
+                            <p class="couple-bio">
+                                Putri kedua dari:<br>
+                                <strong>Bpk. Ir. Hendra Gunawan</strong> &amp; <br>
+                                <strong>Ibu Dr. Ratna Kusuma</strong>
+                            </p>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="couple-instagram">
+                                <i class="bi bi-instagram"></i> @arum.clarissa
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT DETAILS (AKAD & RESEPSI) -->
+        <section class="py-5" id="event-details">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-subtitle">Waktu &amp; Tempat</p>
+                    <h2 class="section-title text-gold-gradient">Rangkaian Acara</h2>
+                    <p class="section-lead-text">
+                        Dengan penuh rasa syukur, kami mengundang kehadiran Bapak/Ibu/Saudara/i pada acara kami:
+                    </p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <!-- AKAD NIKAH -->
+                    <div class="col-lg-5 col-md-6">
+                        <div class="luxury-card event-card">
+                            <div>
+                                <div class="event-icon-circle">
+                                    <i class="bi bi-book-half"></i>
+                                </div>
+                                <h3 class="event-title">Akad Nikah</h3>
+                                
+                                <div class="event-detail-item">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>Minggu, 12 Desember 2026</span>
+                                </div>
+                                <div class="event-detail-item">
+                                    <i class="bi bi-clock"></i>
+                                    <span>08.00 - 10.00 WIB</span>
+                                </div>
+
+                                <div class="event-venue">
+                                    <div class="venue-name">Grand Ballroom Hotel Mulia</div>
+                                    <div class="venue-address">
+                                        Jl. Asia Afrika Senayan No. 1, Gelora, Kecamatan Tanah Abang, Kota Jakarta Pusat, DKI Jakarta 10270
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <a href="https://maps.google.com/?q=Hotel+Mulia+Senayan+Jakarta" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">
+                                    <i class="bi bi-geo-alt-fill"></i> Buka Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RESEPSI PERNIKAHAN -->
+                    <div class="col-lg-5 col-md-6">
+                        <div class="luxury-card event-card">
+                            <div>
+                                <div class="event-icon-circle">
+                                    <i class="bi bi-stars"></i>
+                                </div>
+                                <h3 class="event-title">Resepsi Pernikahan</h3>
+                                
+                                <div class="event-detail-item">
+                                    <i class="bi bi-calendar3"></i>
+                                    <span>Minggu, 12 Desember 2026</span>
+                                </div>
+                                <div class="event-detail-item">
+                                    <i class="bi bi-clock"></i>
+                                    <span>11.00 - 14.00 WIB</span>
+                                </div>
+
+                                <div class="event-venue">
+                                    <div class="venue-name">Grand Ballroom Hotel Mulia</div>
+                                    <div class="venue-address">
+                                        Jl. Asia Afrika Senayan No. 1, Gelora, Kecamatan Tanah Abang, Kota Jakarta Pusat, DKI Jakarta 10270
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <a href="https://maps.google.com/?q=Hotel+Mulia+Senayan+Jakarta" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">
+                                    <i class="bi bi-geo-alt-fill"></i> Buka Google Maps
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section class="py-5" id="gallery-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-subtitle">Momen Berharga</p>
+                    <h2 class="section-title text-gold-gradient">Galeri Kisah Kami</h2>
+                    <p class="section-lead-text">
+                        Sekilas potret kebersamaan yang terpatri dalam kasih sayang menuju gerbang mahligai rumah tangga.
+                    </p>
+                </div>
+
+                <div class="row g-3 g-md-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-img-wrap" data-img-src="assets/images/wedding-1.jpg" data-caption="Abadi Dalam Kehangatan">
+                            <img src="assets/images/wedding-1.jpg" alt="Momen Wedding 1" class="gallery-img" loading="lazy">
+                            <div class="gallery-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-img-wrap" data-img-src="assets/images/wedding-2.jpg" data-caption="Janji Suci Dua Insan">
+                            <img src="assets/images/wedding-2.jpg" alt="Momen Wedding 2" class="gallery-img" loading="lazy">
+                            <div class="gallery-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-img-wrap" data-img-src="assets/images/wedding-3.jpg" data-caption="Melangkah Beriringan">
+                            <img src="assets/images/wedding-3.jpg" alt="Momen Wedding 3" class="gallery-img" loading="lazy">
+                            <div class="gallery-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-img-wrap" data-img-src="assets/images/wedding-4.jpg" data-caption="Kepingan Senyuman Bahagia">
+                            <img src="assets/images/wedding-4.jpg" alt="Momen Wedding 4" class="gallery-img" loading="lazy">
+                            <div class="gallery-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-img-wrap" data-img-src="assets/images/wedding-5.jpg" data-caption="Kasih Yang Bertumbuh">
+                            <img src="assets/images/wedding-5.jpg" alt="Momen Wedding 5" class="gallery-img" loading="lazy">
+                            <div class="gallery-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-img-wrap" data-img-src="assets/images/wedding-6.jpg" data-caption="Menuju Babak Baru">
+                            <img src="assets/images/wedding-6.jpg" alt="Momen Wedding 6" class="gallery-img" loading="lazy">
+                            <div class="gallery-overlay">
+                                <i class="bi bi-zoom-in"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AMPLIP DIGITAL (WEDDING GIFT) -->
+        <section class="py-5" id="gift-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-subtitle">Tanda Kasih</p>
+                    <h2 class="section-title text-gold-gradient">Amplop Digital</h2>
+                    <p class="section-lead-text">
+                        Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih secara digital, Anda dapat melalui rekening berikut:
+                    </p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <!-- REKENING 1: BCA -->
+                    <div class="col-lg-5 col-md-6">
+                        <div class="gift-card text-center">
+                            <span class="bank-badge">BANK BCA</span>
+                            <div class="account-number" id="acc-bca">7820198421</div>
+                            <div class="account-holder">a.n Raden Aditya Pratama</div>
+                            <button class="btn btn-gold copy-btn" data-clipboard-target="#acc-bca" type="button">
+                                <i class="bi bi-copy me-1"></i> Salin Nomor Rekening
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- REKENING 2: MANDIRI -->
+                    <div class="col-lg-5 col-md-6">
+                        <div class="gift-card text-center">
+                            <span class="bank-badge">BANK MANDIRI</span>
+                            <div class="account-number" id="acc-mandiri">1370018942005</div>
+                            <div class="account-holder">a.n Arum Clarissa Dewi</div>
+                            <button class="btn btn-gold copy-btn" data-clipboard-target="#acc-mandiri" type="button">
+                                <i class="bi bi-copy me-1"></i> Salin Nomor Rekening
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- KADO FISIK -->
+                    <div class="col-lg-10">
+                        <div class="luxury-card text-center p-4">
+                            <i class="bi bi-box2-heart text-gold fs-2 mb-2 d-inline-block"></i>
+                            <h4 class="physical-gift-title">Kirim Kado Fisik</h4>
+                            <p class="physical-gift-address">
+                                Alamat: Jl. Kemang Raya No. 45B, Mampang Prapatan, Jakarta Selatan, DKI Jakarta 12730
+                            </p>
+                            <p class="physical-gift-recipient">Penerima: Raden Aditya (0812-3456-7890)</p>
+                            <button class="btn btn-gold btn-sm copy-btn" data-clipboard-text="Jl. Kemang Raya No. 45B, Mampang Prapatan, Jakarta Selatan, DKI Jakarta 12730 (Penerima: Raden Aditya - 0812-3456-7890)" type="button">
+                                <i class="bi bi-copy me-1"></i> Salin Alamat Pengiriman
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP & GUESTBOOK WISHES -->
+        <section class="py-5" id="rsvp-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <p class="section-subtitle">Konfirmasi &amp; Doa</p>
+                    <h2 class="section-title text-gold-gradient">RSVP &amp; Buku Tamu</h2>
+                    <p class="section-lead-text">
+                        Silakan konfirmasi kehadiran Anda serta tinggalkan untaian doa dan harapan terbaik untuk kedua mempelai.
+                    </p>
+                </div>
+
+                <div class="row g-4 justify-content-center">
+                    <!-- RSVP FORM -->
+                    <div class="col-lg-6">
+                        <div class="luxury-card p-4 p-md-5 h-100">
+                            <h3 class="font-heading text-gold-light fs-4 mb-4">
+                                <i class="bi bi-pencil-square me-2 text-gold"></i>Form Konfirmasi Kehadiran
+                            </h3>
+                            
+                            <form id="rsvpForm">
+                                <div class="mb-3">
+                                    <label for="rsvpName" class="form-luxury-label">Nama Lengkap</label>
+                                    <input type="text" class="form-control form-luxury-input" id="rsvpName" placeholder="Masukkan nama Anda" required>
+                                </div>
+
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="rsvpStatus" class="form-luxury-label">Konfirmasi Kehadiran</label>
+                                        <select class="form-select form-luxury-select" id="rsvpStatus" required>
+                                            <option value="" disabled selected>Pilih kehadiran...</option>
+                                            <option value="Hadir">Hadir</option>
+                                            <option value="Tidak Hadir">Tidak Hadir</option>
+                                            <option value="Ragu-ragu">Masih Ragu-ragu</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="rsvpGuests" class="form-luxury-label">Jumlah Tamu</label>
+                                        <select class="form-select form-luxury-select" id="rsvpGuests">
+                                            <option value="1 Orang">1 Orang</option>
+                                            <option value="2 Orang">2 Orang</option>
+                                            <option value="3 Orang">3 Orang</option>
+                                            <option value="4 Orang">4 Orang</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="rsvpMessage" class="form-luxury-label">Ucapan &amp; Doa Restu</label>
+                                    <textarea class="form-control form-luxury-input" id="rsvpMessage" rows="4" placeholder="Tuliskan untaian doa tulus Anda untuk kami..." required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-gold w-100" id="btnSubmitRSVP">
+                                    <i class="bi bi-send-fill me-1"></i> Kirim Konfirmasi &amp; Ucapan
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- WISHES FEED -->
+                    <div class="col-lg-6">
+                        <div class="luxury-card p-4 p-md-5 h-100 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="font-heading text-gold-light fs-4 mb-0">
+                                    <i class="bi bi-chat-heart-fill me-2 text-gold"></i>Untaian Doa Restu
+                                </h3>
+                                <span class="badge bg-dark border border-warning text-gold px-2 py-1" id="wishesCount">3 Ucapan</span>
+                            </div>
+
+                            <div class="wishes-container flex-grow-1" id="wishesList">
+                                <!-- Populated dynamically by script.js -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer-section">
+            <div class="container">
+                <p class="font-script fs-1 text-gold-light mb-2">Raden &amp; Arum</p>
+                <p class="footer-subtitle">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.
+                </p>
+                <div class="ornament-divider">
+                    <span></span>
+                    <i class="bi bi-star-fill"></i>
+                    <span></span>
+                </div>
+                <p class="footer-copy mb-0">
+                    &copy; 2026 The Wedding of Raden &amp; Arum. All Rights Reserved.
+                </p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- =======================================================
+         GALLERY LIGHTBOX MODAL
+         ======================================================= -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content luxury-modal">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title font-heading text-gold-light fs-6" id="galleryModalCaption">Foto Momen</h5>
+                    <button type="button" class="btn-close btn-close-gold" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-3">
+                    <img src="" id="modalImg" class="img-fluid rounded-3 shadow" alt="Foto Galeri" style="max-height: 75vh; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =======================================================
+         TOAST NOTIFICATION (CLIPBOARD FEEDBACK)
+         ======================================================= -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+        <div id="copyToast" class="toast luxury-toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2500">
+            <div class="d-flex">
+                <div class="toast-body text-center w-100 py-2 font-heading small">
+                    <i class="bi bi-check-circle-fill text-gold me-2"></i>
+                    <span id="toastMessage">Nomor Rekening Berhasil Disalin!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
